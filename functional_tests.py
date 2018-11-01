@@ -1,6 +1,30 @@
 from selenium import webdriver
 
 browser = webdriver.Firefox()
+
+# User has heard about a cool new online to-do app. She
+# goes to cehck out its homepage
 browser.get('http://localhost:8000')
 
-assert 'Django' in browser.title
+# She notices the page title and header mention to-do lists
+assert 'To-Do' in browser.title
+
+# She is invited to enter a to-do item straight away.
+
+# She types "Buy peacock feathers" into a text box (User's hobby)
+# is tying fly-fishing lures)
+
+# When she hits enter, the page updates, and now the page lists "1: Buy peacock feathers"
+# as an item in a to-do list
+
+# The page updates again and now shows both items on her list
+
+# User wonders whether the site will remember her list. Then she sees
+# that the site has generated a unique URL for her -- there is some
+# explanatory text to that effect.
+
+# She visits that URL, and her to-do list is still there.
+
+# Satisfied, User goes back to sleep.
+
+browser.quit()
