@@ -89,7 +89,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Francis starts a new list by entering a new item. He
         # is less interesting than Edith
-        input_box = self.browser.find_element_by_it('id_new_item')
+        input_box = self.browser.find_element_by_id('id_new_item')
         input_box.send_keys('Buy milk')
         input_box.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
