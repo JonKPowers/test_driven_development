@@ -3,6 +3,8 @@ from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
 
 REPO_URL = 'https://github.com/JonKPowers/test_driven_development'
+env.user = 'ubuntu'
+env.key_filename=['/home/jkpowers/.ssh/LightsailDefaultKey-us-east-1.pem']
 
 def deploy():
     site_folder = f'/home/{env.user}/{env.host}'
@@ -29,13 +31,13 @@ def _update_virtualenv():
 
 def _create_or_update_dotenv():
     append('.env', 'DJANGO_DEBUG_FALSE=y')
-    append('.env', f'SITENAME={env.host')
+    append('.env', f'SITENAME={env.host}')
     current_contents = run('cat .env')
     if 'DJANGO_SECRET_KEY' not in current_contents:
         new_secret = ''.join(random.SystemRandom().choices(
-            'abcdefghijklmnopqrstuvwxyz0123456789', k=50)
+            'abcdefghijklmnopqrstuvwxyz0123456789', k=50))
         append('.env', f'DJANGO_SECRET_KEY={new_secret}')
-        )
+
 
 def _update_static_files():
     run('./venv/bin/python manage.py collectstatic --noinput')
